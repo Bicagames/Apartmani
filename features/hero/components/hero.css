@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Hero (features/hero/components/hero.tsx)
+
+   The FINAL state (rounded frame on the dark stage, text visible) is the
+   default style. The intro animation is only attached under
+   `prefers-reduced-motion: no-preference`, with `animation-fill-mode: both`,
+   so reduced motion shows the final state immediately and everyone else sees
+   the "from" keyframe (full-bleed, text hidden) during `--hero-delay` with no
+   flash. Only clip-path, transform (`scale`/`translate`) and opacity animate.
+
+   Timeline (variables live in app/globals.css):
+     0 -> --hero-delay           full-bleed photo
+     --hero-delay, --hero-shrink media clip-path inset(0) -> framed, image
+                                 scale 1.08 -> 1, overlay dims slightly more
+     --hero-delay + 0.12s + n*70ms   eyebrow, title, and button fade/slide in
+   ========================================================================== */
+
+.hero-media {
+  clip-path: inset(var(--hero-inset) round var(--radius-lg));
+}
+
+/* Text contrast over any photo (white text >= 4.5:1): flat moss tint and a
+   soft centred scrim behind the title block. Colours are the moss-900 token
+   at different strengths. The header carries its own frosted bar, so the
+   photo is not darkened again along the top edge. */
+.hero-overlay {
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 50% 55%,
+      color-mix(in oklab, var(--color-moss-900) 35%, transparent),
+      transparent
+    ),
+    color-mix(in oklab, var(--color-moss-900) 45%, transparent);
+}
+
+@keyframes hero-frame-in {
+  from {
+    clip-path: inset(0 round 0);
+  }
+
+  to {
+    clip-path: inset(var(--hero-inset) round var(--radius-lg));
+  }
+}
+
+@keyframes hero-image-in {
+  from {
+    scale: 1.08;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+@keyframes hero-overlay-in {
+  from {
+    opacity: 0.75;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-text-in {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-media {
+    animation: hero-frame-in var(--hero-shrink) var(--ease-out)
+      var(--hero-delay) both;
+  }
+
+  .hero-image {
+    animation: hero-image-in var(--hero-shrink) var(--ease-out)
+      var(--hero-delay) both;
+  }
+
+  .hero-overlay {
+    animation: hero-overlay-in var(--hero-shrink) var(--ease-out)
+      var(--hero-delay) both;
+  }
+
+  /* `--hero-step` is set per element in hero.tsx (0 = eyebrow ... 3 = buttons). */
+  .hero-reveal {
+    animation: hero-text-in var(--hero-text) var(--ease-out)
+      calc(var(--hero-delay) + 0.12s + var(--hero-step, 0) * 70ms) both;
+  }
+}

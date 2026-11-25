@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   1. Design tokens (source of truth: docs/style-guide.md)
+   `static` keeps every variable in the output even when this file does not
+   reference it, because components and per-feature CSS files read them too.
+   The `initial` resets remove Tailwind's default palette, type scale, radii
+   and shadows so only the tokens below exist as utilities.
+   ========================================================================== */
+
+@theme static {
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --font-*: initial;
+
+  /* Palette */
+  --color-white: #ffffff;
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f7f1e8;
+  --color-cream-200: #ede3d3;
+  --color-sand-300: #dccbb2;
+  --color-clay-500: #a98562;
+  --color-clay-700: #7a5c3e;
+  --color-moss-700: #3b4a40;
+  --color-moss-800: #2c382f;
+  --color-moss-900: #1f2822;
+  --color-ink-900: #26231f;
+  --color-stone-300: #b9b4ab;
+  --color-stone-500: #68635b;
+
+  /* Semantic aliases: components use these, not the palette names */
+  --color-bg: var(--color-cream-50);
+  --color-bg-alt: var(--color-cream-100);
+  --color-bg-dark: var(--color-moss-900);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-ink-900);
+  --color-text-muted: var(--color-stone-500);
+  --color-brand: var(--color-moss-700);
+  --color-brand-hover: var(--color-moss-800);
+  --color-accent: var(--color-clay-700);
+  --color-accent-soft: var(--color-clay-500);
+  --color-border: var(--color-cream-200);
+  --color-border-strong: var(--color-sand-300);
+  --color-on-dark: var(--color-white);
+  --color-on-dark-muted: var(--color-stone-300);
+
+  /* Fluid type scale: font-size + line-height + tracking + weight per step */
+  --text-display: clamp(2.75rem, 1.2rem + 6.5vw, 7rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: 0.14em;
+  --text-display--font-weight: 600;
+
+  --text-h1: clamp(2.5rem, 1.6rem + 3.8vw, 4.5rem);
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.01em;
+  --text-h1--font-weight: 600;
+
+  --text-h2: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--font-weight: 600;
+
+  --text-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --text-lead--line-height: 1.6;
+  --text-lead--font-weight: 400;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-body--font-weight: 400;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-small--font-weight: 500;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.22em;
+  --text-eyebrow--font-weight: 700;
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 9999px;
+
+  /* Warm-tinted shadows (tinted with ink-900, never pure black) */
+  --shadow-sm:
+    0 1px 2px color-mix(in oklab, var(--color-ink-900) 6%, transparent),
+    0 1px 3px color-mix(in oklab, var(--color-ink-900) 6%, transparent);
+  --shadow-md:
+    0 4px 12px -2px color-mix(in oklab, var(--color-ink-900) 10%, transparent),
+    0 2px 6px color-mix(in oklab, var(--color-ink-900) 6%, transparent);
+  --shadow-lg:
+    0 20px 40px -12px color-mix(in oklab, var(--color-ink-900) 18%, transparent),
+    0 8px 16px -8px color-mix(in oklab, var(--color-ink-900) 10%, transparent);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 160ms;
+  --duration-base: 320ms;
+  --duration-slow: 700ms;
+
+  /* Stacking order (use z-header, z-dialog, z-skip-link) */
+  --z-header: 40;
+  --z-dialog: 50;
+  --z-skip-link: 60;
+}
+
+/* Fonts resolve the next/font variables at the point of use, so they keep
+   working wherever the font class is applied. Variables are created in
+   app/[lang]/layout.tsx. */
+@theme static inline {
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+}
+
+/* Layout and hero variables that are not Tailwind theme namespaces. Read with
+   py-(--space-section), px-(--space-gutter), h-(--header-h) or var(). */
+@layer base {
+  :root {
+    --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+    --space-gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+    --header-h: 4.5rem;
+
+    --hero-delay: 1.15s;
+    --hero-text: 380ms;
+    --hero-shrink: 1400ms;
+    --hero-inset: 1rem;
+  }
+
+  @media (width >= theme(--breakpoint-md)) {
+    :root {
+      --header-h: 5.5rem;
+      --hero-inset: 2rem;
+    }
+  }
+}
+
+/* ==========================================================================
+   2. Base layer
+   ========================================================================== */
+
+@layer base {
+  html {
+    color-scheme: light;
+    /* Not `[id] { scroll-margin-top }` as well: the two add up and double
+       the offset under the fixed header. */
+    scroll-padding-top: var(--header-h);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    /* Cormorant defaults to old-style figures, which make "Suit Deluxe 1"
+       read like "Suit Deluxe I". Lining figures keep numbers legible. */
+    font-variant-numeric: lining-nums;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-soft);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-sand-300);
+    color: var(--color-ink-900);
+  }
+}
+
+/* ==========================================================================
+   3. Utilities
+   ========================================================================== */
+
+@utility eyebrow {
+  color: var(--eyebrow-color, var(--color-accent));
+  font-size: var(--text-eyebrow);
+  font-weight: var(--text-eyebrow--font-weight);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  line-height: var(--text-eyebrow--line-height);
+  text-transform: uppercase;
+}
+
+/* clay-700 fails on dark surfaces (2.48:1); pair with .eyebrow there. */
+@utility eyebrow-on-dark {
+  --eyebrow-color: var(--color-sand-300);
+}
+
+@utility prose-measure {
+  max-width: 65ch;
+}
+
+/* Hides the scrollbar of a scroller that is navigated by other means (swipe,
+   buttons, keys), e.g. the gallery carousel. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility z-header {
+  z-index: var(--z-header);
+}
+
+@utility z-dialog {
+  z-index: var(--z-dialog);
+}
+
+@utility z-skip-link {
+  z-index: var(--z-skip-link);
+}
+
+/* Scroll-driven reveal. Without support or with reduced motion no animation
+   is applied, so content is simply visible (there is no hidden default). */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@utility reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+
+/* ==========================================================================
+   4. Site header (features/site-shell/components/site-header.tsx)
+   Default = SOLID (cream background, dark text). This is also the fallback
+   for browsers without scroll-driven animations and for reduced motion.
+
+   Frosted-over-hero mode is opt-in per page, with no JS and no route
+   knowledge in the layout: a page whose first section is a full-bleed hero
+   renders an element with `data-hero`, and `body:has([data-hero])` shows the
+   blur layer (translucent cream + backdrop-filter) while the solid layer is
+   faded out. The solid layer fades back in while scrolling past the hero.
+   Text stays dark in both states. `<SiteHeader solid>` opts out. The blur
+   never shows once the hero has scrolled away, or on pages without one.
+   The blur layer stays under the solid layer, which fades in over it.
+   ========================================================================== */
+
+@keyframes site-header-bg-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    /* Unlayered, so this wins over the `opacity-0` utility on the blur. */
+    body:has([data-hero]) .site-header:not([data-solid]) .site-header-blur {
+      opacity: 1;
+    }
+
+    body:has([data-hero]) .site-header:not([data-solid]) .site-header-bg {
+      animation: site-header-bg-in linear both;
+      animation-timeline: scroll(root block);
+      /* The hero is 100svh: solid once its bottom edge reaches the header. */
+      animation-range: calc(100svh - var(--header-h) - 4rem)
+        calc(100svh - var(--header-h));
+    }
+  }
+}
+
+/* Mobile menu open: lock page scroll. The <dialog> sets `data-menu-open`.
+   Limited to below `md`, where the menu exists. */
+@media (width < theme(--breakpoint-md)) {
+  body:has([data-menu-open="true"]) {
+    overflow: hidden;
+  }
+}
+
+/* ==========================================================================
+   5. Reservation card :target highlight (`#rezervacije`)
+   Hero / header / apartment CTAs link to `/sr#rezervacije`. The highlight is
+   outline + box-shadow only (no layout motion). Under reduced motion the
+   static ring remains; the one-shot flash runs only under no-preference.
+   ========================================================================== */
+
+#rezervacije:target {
+  outline: 2px solid var(--color-accent-soft);
+  outline-offset: 4px;
+  box-shadow:
+    var(--shadow-md),
+    0 0 0 6px color-mix(in oklab, var(--color-accent-soft) 35%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes reservation-target-flash {
+    from {
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 12px color-mix(in oklab, var(--color-accent-soft) 45%, transparent);
+    }
+
+    to {
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 6px color-mix(in oklab, var(--color-accent-soft) 35%, transparent);
+    }
+  }
+
+  #rezervacije:target {
+    animation: reservation-target-flash var(--duration-slow) var(--ease-out) 1;
+  }
+}
