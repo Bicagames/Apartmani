@@ -8,7 +8,7 @@ import { buildApartmentSchema } from "./apartment";
 import type { JsonLdNode } from "./types";
 
 /** Hero stand-in; same path as `features/hero/components/hero.tsx`. */
-const HERO_IMAGE_PATH = "/images/hero.jpg";
+const HERO_IMAGE_PATH = "/images/hero.webp";
 
 type BuildLodgingBusinessSchemaInput = {
   locale: Locale;

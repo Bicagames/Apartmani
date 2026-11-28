@@ -6,7 +6,7 @@ import "./hero.css";
 
 type HeroProps = {
   locale: Locale;
-  /** The site name; rendered as the page's only `<h1>`. */
+  /** The site name; shown in the eyebrow above the headline. */
   title: string;
   messages: Messages["hero"];
 };
@@ -15,9 +15,9 @@ type HeroProps = {
 // `color` is the image's average colour: it fills the media wrapper so the
 // frame never flashes white or dark while the file loads.
 const heroImage = {
-  src: "/images/hero.jpg",
-  width: 4000,
-  height: 2252,
+  src: "/images/hero.webp",
+  width: 2560,
+  height: 1441,
   color: "#84786f",
 } as const;
 
@@ -47,7 +47,7 @@ export const Hero = ({ locale, title, messages }: HeroProps) => (
           preload
           fetchPriority="high"
           sizes="100vw"
-          quality={70}
+          quality={82}
           // Portrait phones crop the sides of the 16:9 art: keep the arches in view.
           className="object-cover object-center"
           style={{
@@ -63,25 +63,25 @@ export const Hero = ({ locale, title, messages }: HeroProps) => (
 
     <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-center px-[calc(var(--hero-inset)+var(--space-gutter))] pt-(--header-h) pb-8 text-center">
       <p className="hero-reveal eyebrow eyebrow-on-dark [--hero-step:0]">
-        {messages.eyebrow}
+        {title} · {messages.eyebrow}
       </p>
-      <h1 id="hero-title" className="hero-reveal mt-4 [--hero-step:1]">
-        {/* Left padding of one tracking unit balances the trailing letter-spacing
-            so the wordmark is optically centred. */}
-        <span className="block pl-[0.14em] font-display text-display uppercase">
-          {title}
-        </span>
-        <span className="mx-auto mt-4 block max-w-3xl font-display text-lead tracking-normal normal-case md:text-h3">
-          {messages.heading}
-        </span>
+      <h1
+        id="hero-title"
+        className="hero-reveal mx-auto mt-5 max-w-4xl font-display text-h1 text-balance [--hero-step:1]"
+      >
+        {messages.heading}
       </h1>
-      <div className="hero-reveal mt-8 [--hero-step:2]">
+      <p className="hero-reveal mx-auto mt-5 max-w-2xl text-lead text-pretty text-on-dark/85 [--hero-step:2]">
+        {messages.lead}
+      </p>
+      <div className="hero-reveal mt-8 flex flex-col items-center gap-3 [--hero-step:3]">
         <ButtonLink
           href={localizedPath(locale, "/#rezervacije")}
           variant="on-dark"
         >
           {messages.reservations}
         </ButtonLink>
+        <p className="max-w-md text-sm text-on-dark/85">{messages.priceNote}</p>
       </div>
     </div>
   </section>

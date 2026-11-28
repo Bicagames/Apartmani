@@ -2,38 +2,51 @@ const faq = {
   section: {
     eyebrow: "Fragen",
     title: "Wohnen im Family Resort",
-    lead: "Ein paar Antworten, bis die vollständige Liste steht.",
+    lead: "Das Wichtigste zu Aufenthalt, Preisen und Buchung. Für alles Weitere kontaktieren Sie uns gern.",
   },
   items: [
     {
-      question: "Wo liegen die Apartments in Subotica?",
+      question: "Wo befindet sich das Family Resort?",
       answer:
-        "Family Resort liegt in der Somborski put 29a. Die Karte im Kontaktbereich zeigt das Haus.",
+        "Das Family Resort befindet sich in der Somborski put 29a in Subotica. Die genaue Lage finden Sie auf der Karte im Kontaktbereich.",
     },
     {
-      question: "Gibt es Apartments zur Übernachtung?",
+      question: "Welche Apartments bieten Sie an?",
       answer:
-        "Die Apartments sind für einen längeren Aufenthalt. Schreiben Sie uns, wir bestätigen die Dauer.",
+        "Wir bieten Studios sowie Apartments mit einem, zwei oder drei Schlafzimmern an. Die Wohnflächen liegen zwischen 35 und 220 m².",
     },
     {
-      question: "Kann man tageweise mieten?",
+      question: "Sind die Apartments voll ausgestattet?",
       answer:
-        "Das sind Wohnungen auf Dauer. Fragen Sie per E-Mail, ob ein kürzerer Aufenthalt möglich ist.",
+        "Ja, alle Apartments sind voll ausgestattet und auf einen komfortablen Aufenthalt ausgelegt. WLAN, ein Parkplatz und die wöchentliche Reinigung sind im Mietpreis enthalten.",
     },
     {
-      question: "Wie buche ich einen Aufenthalt?",
+      question: "Ist ein kürzerer Aufenthalt möglich?",
       answer:
-        "Rufen Sie +381 66 576 9088 an oder schreiben Sie über WhatsApp, Telegram oder Viber. E-Mail: familyresort024@gmail.com. Eine Online-Buchung gibt es nicht.",
+        "Unsere Apartments sind vor allem für längere Aufenthalte gedacht, mit einer Mindestmietdauer von 28 Tagen. Für einen Aufenthalt von 7 Tagen lassen sich je nach Verfügbarkeit besondere Konditionen vereinbaren.",
     },
     {
-      question: "Welche Apartments gibt es?",
+      question: "Was kostet die Miete eines Apartments?",
       answer:
-        "Studio, ein Schlafzimmer, zwei Schlafzimmer und drei Schlafzimmer. Die Größen liegen zwischen 35 und 220 m².",
+        "Der Preis hängt vom Apartmenttyp und der Aufenthaltsdauer ab. Für aktuelle Angebote und Preise kontaktieren Sie uns bitte direkt.",
     },
     {
-      question: "Was ist in der Wohnung enthalten?",
+      question: "Sind alle Kosten im Mietpreis enthalten?",
       answer:
-        "Jede Wohnung ist voll ausgestattet. Es gibt einen Parkplatz, und die Apartments werden sehr sauber gehalten.",
+        "Ja, alle Kosten des Aufenthalts sind im Mietpreis enthalten. Für Strom, Wasser, Heizung und Internet fallen keine Zusatzkosten an.",
+    },
+    {
+      question: "Muss ich eine Kaution zahlen?",
+      answer: "Nein, für die Miete eines Apartments ist keine Kaution nötig.",
+    },
+    {
+      question: "Sind Haustiere erlaubt?",
+      answer: "Haustiere sind nach vorheriger Absprache mit uns erlaubt.",
+    },
+    {
+      question: "Wie kann ich ein Apartment buchen?",
+      answer:
+        "Rufen Sie uns unter +381 66 576 9088 an, schreiben Sie uns über WhatsApp, Telegram oder Viber oder per E-Mail an familyresort024@gmail.com. Nennen Sie uns Anreisedatum, Aufenthaltsdauer und den gewünschten Apartmenttyp, und wir schlagen Ihnen passende Optionen vor. Eine Buchung über die Website ist derzeit nicht möglich.",
     },
   ],
 };

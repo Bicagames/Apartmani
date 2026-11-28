@@ -1,0 +1,43 @@
+/* FAQ accordion (features/faq/components/faq-section.tsx).
+   Without `::details-content` support the answer simply appears; the open
+   state never depends on the animation. */
+
+.faq-icon {
+  transition:
+    rotate var(--duration-base) var(--ease-out),
+    background-color var(--duration-fast),
+    color var(--duration-fast);
+}
+
+.faq-item[open] .faq-icon {
+  rotate: 45deg;
+  background-color: var(--color-accent);
+  color: var(--color-on-dark);
+}
+
+.faq-item summary:hover .faq-icon {
+  border-color: var(--color-accent-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports selector(::details-content) {
+    .faq-item {
+      interpolate-size: allow-keywords;
+    }
+
+    .faq-item::details-content {
+      block-size: 0;
+      opacity: 0;
+      overflow: clip;
+      transition:
+        block-size var(--duration-base) var(--ease-out),
+        opacity var(--duration-base) var(--ease-out),
+        content-visibility var(--duration-base) allow-discrete;
+    }
+
+    .faq-item[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
+  }
+}

@@ -25,7 +25,7 @@ export const ApartmentsSection = ({ messages }: ApartmentsSectionProps) => {
       draggable: false,
       loading: "lazy",
       sizes: "(min-width: 80rem) 1216px, 100vw",
-      quality: 70,
+      quality: 82,
       className: "object-cover",
       // Intrinsic width/height stay on the element. Inline size fills the slide.
       style: {

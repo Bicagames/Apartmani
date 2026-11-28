@@ -2,38 +2,51 @@ const faq = {
   section: {
     eyebrow: "Questions",
     title: "Staying at Family Resort",
-    lead: "A few answers while we prepare the full list.",
+    lead: "The essentials about your stay, prices, and booking. For anything else, just get in touch.",
   },
   items: [
     {
-      question: "Where are the apartments in Subotica?",
+      question: "Where is Family Resort?",
       answer:
-        "Family Resort is at Somborski put 29a. The map in the contact section shows the building.",
+        "Family Resort is at Somborski put 29a in Subotica. You can find the exact location on the map in the contact section.",
     },
     {
-      question: "Do you offer accommodation for an overnight stay?",
+      question: "What types of apartments do you offer?",
       answer:
-        "The apartments are for a long-term stay. Write to us and we will confirm the length of stay.",
+        "We offer studios as well as apartments with one, two, or three bedrooms. Sizes range from 35 to 220 m².",
     },
     {
-      question: "Can I rent an apartment by the night?",
+      question: "Are the apartments fully equipped?",
       answer:
-        "These are long-term homes. Ask by email if a shorter stay is possible.",
+        "Yes, every apartment is fully equipped for a comfortable stay. Wi-Fi, a parking space, and weekly cleaning are included in the rent.",
     },
     {
-      question: "How do I book a stay?",
+      question: "Is a shorter stay possible?",
       answer:
-        "Call +381 66 576 9088, or message on WhatsApp, Telegram, or Viber. You can also email familyresort024@gmail.com. There is no online booking on the site.",
+        "Our apartments are meant mainly for longer stays, with a minimum rental period of 28 days. For a 7-day stay, special terms can be arranged depending on availability.",
     },
     {
-      question: "Which apartments are available?",
+      question: "How much does an apartment cost?",
       answer:
-        "Studio, one bedroom, two bedroom, and three bedroom. Sizes run from 35 to 220 square metres.",
+        "The price depends on the apartment type and the length of your stay. Contact us directly for current offers and prices.",
     },
     {
-      question: "What does an apartment include?",
+      question: "Are all costs included in the rent?",
       answer:
-        "Each home is fully equipped. There is a parking space, and the apartments are kept very clean.",
+        "Yes, all costs of your stay are included in the rent. There are no extra charges for electricity, water, heating, or internet.",
+    },
+    {
+      question: "Do I need to pay a deposit?",
+      answer: "No, renting an apartment does not require a deposit.",
+    },
+    {
+      question: "Are pets allowed?",
+      answer: "Pets are welcome by prior arrangement with us.",
+    },
+    {
+      question: "How do I book an apartment?",
+      answer:
+        "Call us on +381 66 576 9088, message us on WhatsApp, Telegram, or Viber, or email familyresort024@gmail.com. Tell us your arrival date, length of stay, and the apartment type you are interested in, and we will suggest suitable options. Booking is not currently available through the website.",
     },
   ],
 };
